@@ -36,28 +36,39 @@ export default function Home() {
   }, []);
 
   const MintMany = () => {
-    const [mintCount, setMintCount] = useState(5);
+    const [mintCount, setMintCount] = useState(2);
 
     return (
       <>
+              <p className="count">{nftsData.itemsRemaining}/
+            {nftsData.itemsAvailable}</p>
         <button
           onClick={() => startMintMultiple(mintCount)}
           disabled={isMinting}
-          className="px-4 py-2 mx-auto font-bold text-white transition-opacity rounded-lg hover:opacity-70 bg-gradient-to-br from-green-300 via-blue-500 to-purple-600"
+          className="button"
         >
-          {isMinting ? "loading" : `mint ${mintCount}`}
+          {isMinting ? "loading" : `MINT`}
+          
+          <style jsx>{`
+        .button {
+          background-color: #c038ee;
+          color: white;
+          border-radius: 5em;
+          border: none;
+          width: 100px;
+          font-weight: bold;
+          font-size: 25px;
+          margin-top:20px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+
+        }
+      `}</style>
+
         </button>
 
-        <input
-          disabled={isMinting}
-          type="number"
-          min={2}
-          max={10}
-          className="px-2 mx-auto mt-5 font-bold text-white bg-gray-500"
-          value={mintCount}
-          onChange={(e) => setMintCount((e.target as any).value)}
-        />
-        <p className="mx-auto mt-2">min 2; max 10;</p>
+
+
       </>
     );
   };
@@ -65,10 +76,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>next-candy-machine</title>
+        <title>SolDrinks</title>
         <meta
           name="description"
-          content="Simplified NextJs with typescript example app integrated with Metaplex's Candy Machine"
+          content="Welcome to SolDrinks Lounge!"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -76,34 +87,25 @@ export default function Home() {
       <div className="flex flex-col items-center min-h-screen mx-6">
         <Toaster />
         <div className="flex items-center justify-between w-full mt-3">
-          <h1 className="text-2xl font-bold">next-candy-machine</h1>
+          <a href="https://www.soldrinks.xyz"><img src="https://www.soldrinks.xyz/img/SolDrinks_Logo.webp"></img></a>
+          
+          <style jsx>{`
+        img {
+
+          width: 200px;
+        }
+      `}</style>
+
+
           <div className="flex items-center">
-            {connected && (
-              <div className="flex items-end mr-2">
-                <p className="text-xs text-gray-400">balance</p>
-                <p className="mx-1 font-bold leading-none">
-                  {balance.toFixed(2)}
-                </p>
-                <p
-                  className="font-bold leading-none text-transparent bg-clip-text"
-                  style={{
-                    backgroundImage: `linear-gradient(to bottom right, #00FFA3, #03E1FF, #DC1FFF)`,
-                  }}
-                >
-                  SOL
-                </p>
-              </div>
-            )}
-            <WalletMultiButton />
+
+            <WalletMultiButton style={{
+              backgroundColor: '#c038ee',
+              borderRadius: '5em',
+            }}/>
           </div>
         </div>
-        {connected && (
-          <p className="mr-auto text-sm">
-            <span className="font-bold">Available/Minted/Total:</span>{" "}
-            {nftsData.itemsRemaining}/{nftsData.itemsRedeemed}/
-            {nftsData.itemsAvailable}
-          </p>
-        )}
+       
         <div className="flex items-start justify-center w-11/12 my-10">
           {connected ? (
             <>
@@ -113,18 +115,25 @@ export default function Home() {
                     <p>SOLD OUT</p>
                   ) : (
                     <>
-                      <div className="flex flex-col w-1/2">
-                        <h1 className="mb-10 text-3xl font-bold">Mint One</h1>
-                        <button
-                          onClick={startMint}
-                          disabled={isMinting}
-                          className="px-4 py-2 mx-auto font-bold text-white transition-opacity rounded-lg hover:opacity-70 bg-gradient-to-br from-green-300 via-blue-500 to-purple-600"
-                        >
-                          {isMinting ? "loading" : "mint 1"}
-                        </button>
-                      </div>
-                      <div className="flex flex-col w-1/2">
-                        <h1 className="mb-10 text-3xl font-bold">Mint Many</h1>
+                      
+                     
+                      <div className="container">
+
+                        <img src="https://www.soldrinks.xyz/img/SolDrinks_Front_Page_Gif.gif"></img>
+                        
+
+                        <style jsx>{`
+                          .container {
+                            padding-top: 100px;
+                            text-align: center;
+
+                                     }
+                                     img {
+                                       text-align: center;
+                                       margin: auto;
+                                       width: 450px;
+                                     }
+                      `}</style>
                         <MintMany />
                       </div>
                     </>
@@ -139,17 +148,10 @@ export default function Home() {
               )}
             </>
           ) : (
-            <p>connect wallet to mint</p>
+            <p>Connect wallet</p>
           )}
         </div>
-        <div className="flex flex-col w-full">
-          <h2 className="text-2xl font-bold">My NFTs</h2>
-          <div className="flex mt-3 gap-x-2">
-            {(nfts as any).map((nft: any, i: number) => {
-              return <AnNFT key={i} nft={nft} />;
-            })}
-          </div>
-        </div>
+        
       </div>
     </>
   );

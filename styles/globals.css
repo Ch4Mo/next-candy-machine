@@ -8,6 +8,11 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-image: url(https://www.soldrinks.xyz/bg-sd.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-color: black;
+  color: white;
 }
 
 a {
@@ -18,3 +23,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.count{
+  font-weight: bold;
+}
+
