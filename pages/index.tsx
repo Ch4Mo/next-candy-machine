@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   const MintMany = () => {
-    const [mintCount, setMintCount] = useState(2);
+    const [mintCount, setMintCount] = useState(3);
 
     return (
       <>
@@ -47,7 +47,7 @@ export default function Home() {
           disabled={isMinting}
           className="button"
         >
-          {isMinting ? "loading" : `MINT`}
+          {isMinting ? "loading" : `MINT 3`}
           
           <style jsx>{`
         .button {
